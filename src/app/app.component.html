@@ -1,0 +1,14 @@
+<mat-drawer-container class="container">
+	<mat-drawer #sidenav class="sidenav" mode="side">
+		<nav></nav>
+	</mat-drawer>
+
+	<div class="sidenav-content">
+		<header (toggleSidenav)="sidenav.toggle()"></header>
+		<div class="container">
+			<router-outlet></router-outlet>
+		</div>
+		<footer></footer>
+	</div>
+
+</mat-drawer-container>

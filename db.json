@@ -1,0 +1,34 @@
+{
+  "products": [
+    {
+      "name": "Lucas",
+      "price": "129371",
+      "id": 4
+    },
+    {
+      "name": "Thiago Kassabian",
+      "price": "123912",
+      "id": 5
+    },
+    {
+      "name": "Vanessa",
+      "price": "1293123",
+      "id": 6
+    },
+    {
+      "name": "Lorem Ipsum",
+      "price": "1293",
+      "id": 7
+    },
+    {
+      "name": "blbal",
+      "price": "12312",
+      "id": 10
+    },
+    {
+      "name": "Lorem ipsum dolor",
+      "price": "1923",
+      "id": 11
+    }
+  ]
+}

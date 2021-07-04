@@ -1,0 +1,19 @@
+<mat-toolbar id="header" class="mat-elevation-z2">
+
+	<button mat-icon-button aria-label="menu" (click)="sidenavToggle()">
+		<mat-icon *ngIf="!toggleMenu">menu</mat-icon>
+		<mat-icon *ngIf="toggleMenu">close</mat-icon>
+	</button>
+
+	<a routerLink="/" class="logo">
+		<img src="../../assets/logo.png" alt="Logo">
+	</a>
+
+	<a routerLink="{{url}}" class="logo">
+
+		<span class="title">
+			<mat-icon aria-hidden="false" aria-label="Home" class="icon">{{icon}}</mat-icon>
+			{{ title }}
+		</span>
+	</a>
+</mat-toolbar>
