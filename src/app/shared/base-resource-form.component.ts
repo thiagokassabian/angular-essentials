@@ -7,8 +7,11 @@ import { BaseResourceService } from './base-resource.service';
 export abstract class BaseResourceFormComponent<T extends BaseResourceInterface> {
 	protected dialog: MatDialog;
 
-	constructor(protected baseResourceService: BaseResourceService<T>, public resource: T,
-		protected injector: Injector) {
+	constructor(
+		protected baseResourceService: BaseResourceService<T>,
+		public resource: T,
+		protected injector: Injector
+	) {
 		this.dialog = injector.get(MatDialog)
 	}
 
@@ -18,7 +21,7 @@ export abstract class BaseResourceFormComponent<T extends BaseResourceInterface>
 	}
 
 	create = (resource: T) => {
-		this.baseResourceService.create(resource).subscribe(response => {
+		this.baseResourceService.create(resource).subscribe(() => {
 			this.actionsSuccess('Produto cadastrado com sucesso')
 		})
 	}
@@ -30,7 +33,7 @@ export abstract class BaseResourceFormComponent<T extends BaseResourceInterface>
 	}
 
 	update = (resource: T) => {
-		this.baseResourceService.update(resource).subscribe(response => {
+		this.baseResourceService.update(resource).subscribe(() => {
 			this.actionsSuccess('Produto atualizado com sucesso')
 		})
 	}

@@ -1,4 +1,4 @@
-import { HeaderDataService } from './../../components/templates/header/header-data.service';
+import { HeaderDataService } from '../templates/header/header-data.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,17 +6,14 @@ import { Component, OnInit } from '@angular/core';
 	templateUrl: './home.component.html',
 	styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent {
 
-	constructor(private headerDataService: HeaderDataService) {
+	constructor(protected headerDataService: HeaderDataService) {
 		headerDataService.headerData = {
 			title: 'Início',
 			icon: 'home',
 			url: '/',
 		}
-	}
-
-	ngOnInit(): void {
 	}
 
 }

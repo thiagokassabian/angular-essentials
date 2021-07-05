@@ -14,8 +14,11 @@ import { ProductFormComponent } from '../product-form/product-form.component';
 export class ProductListComponent extends BaseResourceListComponent<Product> {
 	displayedColumns: string[] = ['id', 'name', 'price', 'actions'];
 
-	constructor(protected productService: ProductService, private headerDataService: HeaderDataService,
-		private dialog: MatDialog) {
+	constructor(
+		protected productService: ProductService,
+		private headerDataService: HeaderDataService,
+		private dialog: MatDialog
+	) {
 		super(productService)
 
 		this.headerDataService.headerData = {
@@ -27,18 +30,12 @@ export class ProductListComponent extends BaseResourceListComponent<Product> {
 
 	openDialog(id: number | null) {
 		let data = {}
-		if (id) {
-			data = {
-				data: id
-			}
-		}
+		if (id) data = { data: id }
 		const dialogRef = this.dialog.open(ProductFormComponent, data);
 
 		dialogRef.afterClosed().subscribe(result => {
-			if (!result) {
-				this.loadResources()
-			}
-		});
+			if (!result) this.loadResources()
+		})
 	}
 
 }

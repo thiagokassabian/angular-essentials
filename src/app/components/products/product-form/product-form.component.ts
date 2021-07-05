@@ -13,8 +13,11 @@ export class ProductFormComponent extends BaseResourceFormComponent<Product> {
 	title: string = 'Cadastrar produto'
 	btnSubmitLabel: string = 'Cadastrar'
 
-	constructor(protected productService: ProductService, protected injector: Injector,
-		@Inject(MAT_DIALOG_DATA) public data: string) {
+	constructor(
+		protected productService: ProductService,
+		protected injector: Injector,
+		@Inject(MAT_DIALOG_DATA) public data: string
+	) {
 		super(productService, new Product(), injector)
 
 		if (data) {
