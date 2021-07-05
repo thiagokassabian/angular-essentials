@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { BaseResourceInterface } from './base-resource-interface';
 import { Directive, Injector } from '@angular/core';
@@ -22,7 +23,7 @@ export abstract class BaseResourceFormComponent<T extends BaseResourceInterface>
 
 	create = (resource: T) => {
 		this.baseResourceService.create(resource).subscribe(() => {
-			this.actionsSuccess('Produto cadastrado com sucesso')
+			this.actionsSuccess('Cadastrado com sucesso')
 		})
 	}
 
@@ -34,7 +35,7 @@ export abstract class BaseResourceFormComponent<T extends BaseResourceInterface>
 
 	update = (resource: T) => {
 		this.baseResourceService.update(resource).subscribe(() => {
-			this.actionsSuccess('Produto atualizado com sucesso')
+			this.actionsSuccess('Atualizado com sucesso')
 		})
 	}
 

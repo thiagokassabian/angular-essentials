@@ -1,39 +1,39 @@
 {
   "products": [
     {
-      "name": "Thiago Kassabian",
-      "price": "1239",
+      "name": "Celular Samsung S20",
+      "price": "5469.90",
+      "id": 1
+    },
+    {
+      "name": "Geladeira Electrolux",
+      "price": "3250.20",
+      "id": 2
+    },
+    {
+      "name": "Notebook Dell",
+      "price": "9999.90",
+      "id": 3
+    },
+    {
+      "name": "Mouse Logitech",
+      "price": "299.89",
+      "id": 4
+    },
+    {
+      "name": "Fone JBL",
+      "price": "150.50",
       "id": 5
     },
     {
-      "name": "Vanessa",
-      "price": "12931",
+      "name": "Celular iPhone XR",
+      "price": "7500.49",
       "id": 6
     },
     {
-      "name": "Lucas",
-      "price": "79192",
-      "id": 8
-    },
-    {
-      "name": "Sandra",
-      "price": "71237",
-      "id": 9
-    },
-    {
-      "name": "ttt",
-      "price": "123",
-      "id": 10
-    },
-    {
-      "name": "bbb",
-      "price": "21321",
-      "id": 11
-    },
-    {
-      "name": "Blabla",
-      "price": "3211",
-      "id": 12
+      "name": "Macbook",
+      "price": "15450.90",
+      "id": 7
     }
   ]
 }

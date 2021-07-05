@@ -1,11 +1,9 @@
-import { MatDialog } from '@angular/material/dialog';
 import { BaseResourceInterface } from './base-resource-interface';
 import { Directive, OnInit, ViewChild, AfterViewInit, Injector } from '@angular/core';
 import { BaseResourceService } from './base-resource.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { ProductFormComponent } from '../components/products/product-form/product-form.component';
 
 @Directive()
 export abstract class BaseResourceListComponent<T extends BaseResourceInterface> implements OnInit, AfterViewInit {
