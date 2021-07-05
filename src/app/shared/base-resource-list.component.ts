@@ -1,56 +1,43 @@
+import { MatDialog } from '@angular/material/dialog';
 import { BaseResourceInterface } from './base-resource-interface';
-import { Directive, Injector, OnInit } from '@angular/core';
+import { Directive, OnInit, ViewChild, AfterViewInit, Injector } from '@angular/core';
 import { BaseResourceService } from './base-resource.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
+import { ProductFormComponent } from '../components/products/product-form/product-form.component';
 
 @Directive()
-export abstract class BaseResourceListComponent<T extends BaseResourceInterface> implements OnInit {
-	// resources: T[] = [];
-	protected route: ActivatedRoute;
-	protected router: Router;
+export abstract class BaseResourceListComponent<T extends BaseResourceInterface> implements OnInit, AfterViewInit {
+	resources: T[] = [];
+	@ViewChild(MatPaginator) paginator!: MatPaginator;
+	@ViewChild(MatSort) sort!: MatSort;
+	dataSource = new MatTableDataSource()
 
-	constructor(protected baseResourceService: BaseResourceService<T>, public resource: T, protected injector: Injector) {
-		this.route = injector.get(ActivatedRoute)
-		this.router = injector.get(Router)
-	}
+	constructor(protected baseResourceService: BaseResourceService<T>) { }
 
 	ngOnInit(): void {
-		// this.loadResources()
+		this.loadResources()
 	}
 
-	// loadResources = () => {
-	// 	this.baseResourceService.getAll().subscribe(response => {
-	// 		this.resources = response
-	// 	})
-	// }
+	ngAfterViewInit(): void {
+		this.dataSource.sort = this.sort;
+		this.dataSource.paginator = this.paginator;
+	}
 
-	create = (resource: T) => {
-		this.baseResourceService.create(resource).subscribe(response => {
-			this.actionsSuccess('Produto cadastrado com sucesso')
+	loadResources = () => {
+		this.baseResourceService.getAll().subscribe(response => {
+			this.resources = response
+			this.dataSource.data = this.resources
 		})
 	}
 
-	readById = (id: string) => {
-		this.baseResourceService.readById(id).subscribe(response => {
-			this.resource = response
+	delete = (id: number) => {
+		this.baseResourceService.delete(id).subscribe(() => {
+			this.baseResourceService.showMessage('Excluído com sucesso')
+			this.resources = this.resources.filter(el => el.id !== id)
+			this.dataSource.data = this.resources
 		})
-	}
-
-	update = (resource: T) => {
-		this.baseResourceService.update(resource).subscribe(response => {
-			this.actionsSuccess('Produto atualizado com sucesso')
-		})
-	}
-
-	back() {
-		const path = this.route.snapshot.url[0].path
-		this.router.navigate([path])
-	}
-
-	actionsSuccess = (msg: string) => {
-		this.baseResourceService.showMessage(msg)
-		const path = this.route.snapshot.url[0].path
-		this.router.navigate([path])
 	}
 
 }

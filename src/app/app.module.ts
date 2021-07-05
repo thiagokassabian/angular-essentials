@@ -8,14 +8,12 @@ import { registerLocaleData } from '@angular/common';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './views/home/home.component';
+import { HomeComponent } from './components/home/home.component';
 import { HeaderComponent } from './components/templates/header/header.component';
 import { FooterComponent } from './components/templates/footer/footer.component';
 import { NavComponent } from './components/templates/nav/nav.component'
-import { ProductsComponent } from './views/products/products.component';
-import { ProductCreateComponent } from './components/products/product-create/product-create.component';
-import { ProductReadComponent } from './components/products/product-read/product-read.component';
-import { ProductUpdateComponent } from './components/products/product-update/product-update.component';
+import { ProductListComponent } from './components/products/product-list/product-list.component';
+import { ProductFormComponent } from './components/products/product-form/product-form.component';
 
 import { MatToolbarModule } from '@angular/material/toolbar'
 import { MatIconModule } from '@angular/material/icon';
@@ -30,6 +28,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { TableComponent } from './components/templates/table/table.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 registerLocaleData(ptBr);
 
@@ -40,11 +39,9 @@ registerLocaleData(ptBr);
 		HeaderComponent,
 		FooterComponent,
 		NavComponent,
-		ProductsComponent,
-		ProductCreateComponent,
-		ProductReadComponent,
+		ProductListComponent,
 		TableComponent,
-		ProductUpdateComponent,
+		ProductFormComponent
 	],
 	imports: [
 		BrowserModule,
@@ -63,7 +60,8 @@ registerLocaleData(ptBr);
 		MatInputModule,
 		MatTableModule,
 		MatPaginatorModule,
-		MatSortModule
+		MatSortModule,
+		MatDialogModule
 	],
 	providers: [
 		{ provide: LOCALE_ID, useValue: 'pt' },

@@ -1,34 +1,24 @@
 {
   "products": [
     {
-      "name": "Lucas",
-      "price": "129371",
-      "id": 4
-    },
-    {
       "name": "Thiago Kassabian",
-      "price": "123912",
+      "price": "1239",
       "id": 5
     },
     {
       "name": "Vanessa",
-      "price": "1293123",
+      "price": "12931",
       "id": 6
     },
     {
-      "name": "Lorem Ipsum",
-      "price": "1293",
-      "id": 7
+      "name": "Lucas",
+      "price": "79192",
+      "id": 8
     },
     {
-      "name": "blbal",
-      "price": "12312",
-      "id": 10
-    },
-    {
-      "name": "Lorem ipsum dolor",
-      "price": "1923",
-      "id": 11
+      "name": "Sandra",
+      "price": "71237",
+      "id": 9
     }
   ]
 }
