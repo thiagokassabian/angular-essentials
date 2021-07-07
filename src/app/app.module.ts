@@ -27,7 +27,6 @@ import { MatInputModule } from '@angular/material/input';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
-import { TableComponent } from './components/templates/table/table.component';
 import { MatDialogModule } from '@angular/material/dialog';
 
 registerLocaleData(ptBr);
@@ -40,7 +39,6 @@ registerLocaleData(ptBr);
 		FooterComponent,
 		NavComponent,
 		ProductListComponent,
-		TableComponent,
 		ProductFormComponent
 	],
 	imports: [
@@ -70,13 +68,4 @@ registerLocaleData(ptBr);
 	bootstrap: [AppComponent],
 	exports: []
 })
-export class AppModule {
-	/**
-   * Allows for retrieving singletons using `AppModule.injector.get(MyService)`
-   * This is good to prevent injecting the service as constructor parameter.
-   */
-	static injector: Injector;
-	constructor(injector: Injector) {
-		AppModule.injector = injector;
-	}
-}
+export class AppModule { }
