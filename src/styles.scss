@@ -6,7 +6,7 @@ body {
 }
 body {
 	margin: 0;
-	font-family: Roboto, "Helvetica Neue", sans-serif;
+	font-family: Roboto, 'Helvetica Neue', sans-serif;
 }
 
 mat-drawer-container {
@@ -27,8 +27,18 @@ mat-drawer.sidenav {
 	color: rgb(227, 94, 107);
 }
 
-table.mat-table {
+.mat-table {
 	width: 100%;
+	th,
+	td {
+		padding-left: 1rem !important;
+		padding-right: 1rem !important;
+	}
+	.mat-column-id,
+	.mat-column-actions {
+		width: 1%;
+		white-space: nowrap;
+	}
 }
 
 .msg-success {

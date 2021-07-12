@@ -9,8 +9,17 @@
 		</div>
 		<div>
 			<mat-form-field>
+				<mat-label>Categoria</mat-label>
+				<mat-select [(ngModel)]="resource.categoryId" [ngModelOptions]="{standalone: true}">
+					<mat-option *ngFor="let category of categories" [value]="category.id">
+						{{category.name}}</mat-option>
+				</mat-select>
+			</mat-form-field>
+		</div>
+		<div>
+			<mat-form-field>
 				<mat-label>Preço</mat-label>
-				<input matInput placeholder="Preço" [(ngModel)]="resource.price" name="price">
+				<input matInput currencyMask placeholder="Preço" [(ngModel)]="resource.price" name="price">
 			</mat-form-field>
 		</div>
 	</div>
@@ -20,3 +29,4 @@
 	</div>
 
 </form>
+<!-- {{resource | json}} -->

@@ -1,30 +1,52 @@
-import { Component, Inject, Injector } from '@angular/core';
+import {
+	AfterContentChecked,
+	AfterViewChecked,
+	AfterViewInit,
+	Component,
+	Inject,
+	Injector,
+	OnInit,
+} from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { BaseResourceFormComponent } from 'src/app/shared/base-resource-form.component';
+import { Category } from '../../categories/category';
+import { CategoryService } from '../../categories/category.service';
 import { Product } from '../product';
 import { ProductService } from '../product.service';
 
 @Component({
 	selector: 'app-product-form',
 	templateUrl: './product-form.component.html',
-	styleUrls: ['./product-form.component.scss']
+	styleUrls: ['./product-form.component.scss'],
 })
-export class ProductFormComponent extends BaseResourceFormComponent<Product> {
-	title: string = 'Cadastrar produto'
-	btnSubmitLabel: string = 'Cadastrar'
+export class ProductFormComponent extends BaseResourceFormComponent<Product> implements OnInit {
+	title: string = 'Cadastrar produto';
+	btnSubmitLabel: string = 'Cadastrar';
+	categories: Category[] = [];
 
 	constructor(
 		protected productService: ProductService,
 		protected injector: Injector,
-		@Inject(MAT_DIALOG_DATA) public data: string
+		@Inject(MAT_DIALOG_DATA) public data: any,
+		private categoryService: CategoryService
 	) {
-		super(productService, new Product(), injector)
+		super(productService, new Product(), injector);
 
 		if (data) {
-			this.loadResource(data)
-			this.title = 'Atualizar produto'
-			this.btnSubmitLabel = 'Atualizar'
+			this.title = 'Atualizar produto';
+			this.btnSubmitLabel = 'Atualizar';
+			delete data.category;
+			const product = Object.assign(new Product(), data);
+			this.resource = product;
 		}
 	}
+	ngOnInit() {
+		this.getCategories();
+	}
 
+	getCategories = () => {
+		this.categoryService.getAll().subscribe(response => {
+			this.categories = response;
+		});
+	};
 }

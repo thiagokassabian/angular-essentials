@@ -1,0 +1,16 @@
+<form>
+	<h1 mat-dialog-title>{{title}}</h1>
+	<div mat-dialog-content>
+		<div>
+			<mat-form-field>
+				<mat-label>Nome</mat-label>
+				<input matInput placeholder="Nome" [(ngModel)]="resource.name" name="name">
+			</mat-form-field>
+		</div>
+	</div>
+	<div mat-dialog-actions>
+		<button mat-raised-button color="primary" (click)="submit(resource)">{{btnSubmitLabel}}</button>
+		<button mat-raised-button [mat-dialog-close]="true">Cancelar</button>
+	</div>
+
+</form>

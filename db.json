@@ -1,39 +1,76 @@
 {
   "products": [
     {
-      "name": "Celular Samsung S20",
-      "price": "5469.90",
-      "id": 1
+      "id": 1,
+      "name": "Celular Samsung S20+",
+      "price": 5490.49,
+      "categoryId": 3
     },
     {
       "name": "Geladeira Electrolux",
       "price": "3250.20",
-      "id": 2
+      "id": 2,
+      "categoryId": 1
     },
     {
       "name": "Notebook Dell",
       "price": "9999.90",
-      "id": 3
+      "id": 3,
+      "categoryId": 4
     },
     {
       "name": "Mouse Logitech",
       "price": "299.89",
-      "id": 4
+      "id": 4,
+      "categoryId": 4
     },
     {
       "name": "Fone JBL",
       "price": "150.50",
-      "id": 5
+      "id": 5,
+      "categoryId": 1
     },
     {
       "name": "Celular iPhone XR",
       "price": "7500.49",
-      "id": 6
+      "id": 6,
+      "categoryId": 3
     },
     {
-      "name": "Macbook",
-      "price": "15450.90",
+      "name": "Carregador de celular",
+      "price": "59.99",
+      "categoryId": 3,
       "id": 7
+    },
+    {
+      "name": "Aspirador de pó",
+      "price": "129.90",
+      "categoryId": 1,
+      "id": 8
+    },
+    {
+      "name": "Geladeira Brastemp",
+      "price": "3299.90",
+      "categoryId": 1,
+      "id": 9
+    }
+  ],
+  "categories": [
+    {
+      "id": 1,
+      "name": "Eletro"
+    },
+    {
+      "id": 2,
+      "name": "TVs"
+    },
+    {
+      "id": 3,
+      "name": "Celulares"
+    },
+    {
+      "id": 4,
+      "name": "Informática"
     }
   ]
 }

@@ -6,16 +6,18 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 
 @Directive()
-export abstract class BaseResourceListComponent<T extends BaseResourceInterface> implements OnInit, AfterViewInit {
+export abstract class BaseResourceListComponent<T extends BaseResourceInterface>
+	implements OnInit, AfterViewInit
+{
 	resources: T[] = [];
 	@ViewChild(MatPaginator) paginator!: MatPaginator;
 	@ViewChild(MatSort) sort!: MatSort;
-	dataSource = new MatTableDataSource()
+	dataSource = new MatTableDataSource();
 
-	constructor(protected baseResourceService: BaseResourceService<T>) { }
+	constructor(protected baseResourceService: BaseResourceService<T>) {}
 
 	ngOnInit(): void {
-		this.loadResources()
+		this.loadResources();
 	}
 
 	ngAfterViewInit(): void {
@@ -25,17 +27,16 @@ export abstract class BaseResourceListComponent<T extends BaseResourceInterface>
 
 	loadResources = () => {
 		this.baseResourceService.getAll().subscribe(response => {
-			this.resources = response
-			this.dataSource.data = this.resources
-		})
-	}
+			this.resources = response;
+			this.dataSource.data = this.resources;
+		});
+	};
 
 	delete = (id: number) => {
 		this.baseResourceService.delete(id).subscribe(() => {
-			this.baseResourceService.showMessage('Excluído com sucesso')
-			this.resources = this.resources.filter(el => el.id !== id)
-			this.dataSource.data = this.resources
-		})
-	}
-
+			this.baseResourceService.showMessage('Excluído com sucesso');
+			this.resources = this.resources.filter(el => el.id !== id);
+			this.dataSource.data = this.resources;
+		});
+	};
 }
