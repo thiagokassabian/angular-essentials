@@ -1,5 +1,4 @@
-/* You can add global styles to this file, and also import other style files */
-
+/* GERAL */
 html,
 body {
 	height: 100%;
@@ -9,24 +8,31 @@ body {
 	font-family: Roboto, 'Helvetica Neue', sans-serif;
 }
 
-mat-drawer-container {
-	height: 100vh;
-}
-mat-drawer.sidenav {
-	width: 200px;
-}
-.sidenav-content > .container {
-	padding: 1.5rem;
+/** ESTRUTURA **/
+.mat-drawer-container {
+	height: 100%;
+
+	.sidenav-content {
+		padding: 64px 0 44px;
+
+		.container {
+			padding: 1.5rem;
+		}
+	}
 }
 
-.v-middle {
-	vertical-align: middle;
+/* SIDENAV */
+.mat-nav-list {
+	.mat-list-item-content {
+		padding: 0 35px 0 25px !important;
+
+		.mat-icon {
+			margin-right: 0.5rem;
+		}
+	}
 }
 
-.red {
-	color: rgb(227, 94, 107);
-}
-
+/* TABELA */
 .mat-table {
 	width: 100%;
 	th,
@@ -39,8 +45,16 @@ mat-drawer.sidenav {
 		width: 1%;
 		white-space: nowrap;
 	}
+	.mat-column-actions {
+		text-align: center;
+
+		button:not(:last-child) {
+			margin-right: 5px;
+		}
+	}
 }
 
+/* TEMAS DA MENSAGEM */
 .msg-success {
 	background-color: #28a745;
 }

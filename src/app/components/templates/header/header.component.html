@@ -5,15 +5,12 @@
 		<mat-icon *ngIf="toggleMenu">close</mat-icon>
 	</button>
 
-	<a routerLink="/" class="logo">
+	<!-- <a routerLink="/" class="logo">
 		<img src="../../assets/logo.png" alt="Logo">
-	</a>
+	</a> -->
 
-	<a routerLink="{{url}}" class="logo">
-
-		<span class="title">
-			<mat-icon aria-hidden="false" aria-label="Home" class="icon">{{icon}}</mat-icon>
-			{{ title }}
-		</span>
+	<a routerLink="{{url}}" class="title">
+		<mat-icon aria-hidden="false" aria-label="Home" class="icon">{{icon}}</mat-icon>
+		{{ title }}
 	</a>
 </mat-toolbar>

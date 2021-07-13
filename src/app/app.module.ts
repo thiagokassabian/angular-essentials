@@ -33,6 +33,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
 
 import { CurrencyMaskConfig, CurrencyMaskModule, CURRENCY_MASK_CONFIG } from 'ng2-currency-mask';
+import { PageHeaderComponent } from './components/templates/page-header/page-header.component';
 
 export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
 	align: 'right',
@@ -57,6 +58,7 @@ registerLocaleData(ptBr);
 		ProductFormComponent,
 		CategoryListComponent,
 		CategoryFormComponent,
+  PageHeaderComponent,
 	],
 	imports: [
 		BrowserModule,

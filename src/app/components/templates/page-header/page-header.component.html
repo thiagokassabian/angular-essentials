@@ -1,0 +1,9 @@
+<div class="page-header">
+	<div class="buttons">
+		<button mat-raised-button color="primary" (click)="openForm()">Adicionar</button>
+	</div>
+	<mat-form-field appearance="standard">
+		<mat-label>Filtro</mat-label>
+		<input matInput (keyup)="filterData($event)" placeholder="Ex. celular" #input>
+	</mat-form-field>
+</div>

@@ -1,5 +1,5 @@
 import { BaseResourceInterface } from './base-resource-interface';
-import { Directive, OnInit, ViewChild, AfterViewInit, Injector } from '@angular/core';
+import { Directive, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { BaseResourceService } from './base-resource.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -39,4 +39,13 @@ export abstract class BaseResourceListComponent<T extends BaseResourceInterface>
 			this.dataSource.data = this.resources;
 		});
 	};
+
+	applyFilter(event: Event) {
+		const filterValue = (event.target as HTMLInputElement).value;
+		this.dataSource.filter = filterValue.trim().toLowerCase();
+
+		if (this.dataSource.paginator) {
+			this.dataSource.paginator.firstPage();
+		}
+	}
 }
