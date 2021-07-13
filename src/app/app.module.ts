@@ -16,6 +16,8 @@ import { ProductListComponent } from './components/products/product-list/product
 import { ProductFormComponent } from './components/products/product-form/product-form.component';
 import { CategoryListComponent } from './components/categories/category-list/category-list.component';
 import { CategoryFormComponent } from './components/categories/category-form/category-form.component';
+import { PageHeaderComponent } from './components/templates/page-header/page-header.component';
+import { PaginatorIntl } from './shared/paginator-intl.component';
 
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
@@ -27,13 +29,12 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatTableModule } from '@angular/material/table';
-import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatPaginatorIntl, MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
 
 import { CurrencyMaskConfig, CurrencyMaskModule, CURRENCY_MASK_CONFIG } from 'ng2-currency-mask';
-import { PageHeaderComponent } from './components/templates/page-header/page-header.component';
 
 export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
 	align: 'right',
@@ -58,7 +59,7 @@ registerLocaleData(ptBr);
 		ProductFormComponent,
 		CategoryListComponent,
 		CategoryFormComponent,
-  PageHeaderComponent,
+		PageHeaderComponent,
 	],
 	imports: [
 		BrowserModule,
@@ -86,6 +87,7 @@ registerLocaleData(ptBr);
 		{ provide: LOCALE_ID, useValue: 'pt' },
 		{ provide: DEFAULT_CURRENCY_CODE, useValue: 'BRL' },
 		{ provide: CURRENCY_MASK_CONFIG, useValue: CustomCurrencyMaskConfig },
+		{ provide: MatPaginatorIntl, useClass: PaginatorIntl },
 	],
 	bootstrap: [AppComponent],
 	exports: [],
