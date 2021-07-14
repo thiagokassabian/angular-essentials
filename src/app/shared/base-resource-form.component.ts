@@ -26,34 +26,34 @@ export abstract class BaseResourceFormComponent<T extends BaseResourceInterface>
 		else this.update(resource);
 	};
 
-	create = (resource: T) => {
+	protected create = (resource: T) => {
 		this.createSubscription = this.baseResourceService.create(resource).subscribe(() => {
 			this.actionsSuccess('Cadastrado com sucesso');
 		});
 	};
 
-	loadResource = (id: number) => {
-		this.loadResourceSubscription = this.baseResourceService
-			.readById(id)
-			.subscribe(response => {
-				this.resource = response;
-			});
-	};
+	// loadResource = (id: number) => {
+	// 	this.loadResourceSubscription = this.baseResourceService
+	// 		.readById(id)
+	// 		.subscribe(response => {
+	// 			this.resource = response;
+	// 		});
+	// };
 
-	update = (resource: T) => {
+	protected update = (resource: T) => {
 		this.updateSubscription = this.baseResourceService.update(resource).subscribe(() => {
 			this.actionsSuccess('Atualizado com sucesso');
 		});
 	};
 
-	actionsSuccess = (msg: string) => {
+	protected actionsSuccess = (msg: string) => {
 		this.baseResourceService.showMessage(msg);
 		this.dialog.closeAll();
 	};
 
 	ngOnDestroy() {
 		if (this.createSubscription) this.createSubscription.unsubscribe();
-		if (this.loadResourceSubscription) this.loadResourceSubscription.unsubscribe();
 		if (this.updateSubscription) this.updateSubscription.unsubscribe();
+		// if (this.loadResourceSubscription) this.loadResourceSubscription.unsubscribe();
 	}
 }

@@ -28,7 +28,7 @@ export abstract class BaseResourceListComponent<T extends BaseResourceInterface>
 		this.dataSource.paginator = this.paginator;
 	}
 
-	loadResources = () => {
+	protected loadResources = () => {
 		this.loadResourcesSubscription = this.baseResourceService.getAll().subscribe(response => {
 			this.resources = response;
 			this.dataSource.data = this.resources;
