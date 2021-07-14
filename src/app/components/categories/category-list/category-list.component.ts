@@ -6,6 +6,8 @@ import { BaseResourceListComponent } from 'src/app/shared/base-resource-list.com
 import { MatDialog } from '@angular/material/dialog';
 import { CategoryFormComponent } from '../category-form/category-form.component';
 
+type Action = 'edit' | undefined;
+
 @Component({
 	selector: 'category-list',
 	templateUrl: './category-list.component.html',

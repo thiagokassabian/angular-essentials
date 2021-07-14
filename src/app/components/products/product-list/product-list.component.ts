@@ -44,13 +44,13 @@ export class ProductListComponent
 		super.ngOnInit();
 	}
 
-	getCategories() {
+	private getCategories() {
 		this.categoriesSubscription = this.categoryService.getAll().subscribe(response => {
 			this.categories = response;
 		});
 	}
 
-	loadResources = () => {
+	protected loadResources = () => {
 		this.produtosSubscription = this.baseResourceService.getAll().subscribe(response => {
 			this.setCategoryProductSubscription = this.setCategoryProduct(response).subscribe(
 				response => {
@@ -61,7 +61,7 @@ export class ProductListComponent
 		});
 	};
 
-	setCategoryProduct = (products: any[]): Observable<any> =>
+	private setCategoryProduct = (products: any[]): Observable<any> =>
 		new Observable(subscriber => {
 			const newProducts: any[] = [];
 			products.map(row => {

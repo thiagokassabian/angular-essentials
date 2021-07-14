@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import ptBr from '@angular/common/locales/pt';
 import { registerLocaleData } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -67,6 +68,7 @@ registerLocaleData(ptBr);
 		BrowserAnimationsModule,
 		HttpClientModule,
 		FormsModule,
+		ReactiveFormsModule,
 		MatToolbarModule,
 		MatIconModule,
 		MatSidenavModule,

@@ -4,7 +4,7 @@
       "id": 1,
       "name": "Celular Samsung S20+",
       "price": 1200.1,
-      "categoryId": 4
+      "categoryId": 3
     },
     {
       "name": "Geladeira Electrolux",
@@ -53,6 +53,18 @@
       "price": "3299.90",
       "categoryId": 1,
       "id": 9
+    },
+    {
+      "id": 10,
+      "name": "teste2",
+      "price": 100000,
+      "categoryId": 6
+    },
+    {
+      "id": 11,
+      "name": "teste",
+      "price": 1.23,
+      "categoryId": 2
     }
   ],
   "categories": [
@@ -71,6 +83,14 @@
     {
       "id": 4,
       "name": "Informática"
+    },
+    {
+      "id": 5,
+      "name": "teste"
+    },
+    {
+      "id": 6,
+      "name": "teste2"
     }
   ]
 }

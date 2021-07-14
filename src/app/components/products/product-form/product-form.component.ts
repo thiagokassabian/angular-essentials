@@ -6,6 +6,7 @@ import { Category } from '../../categories/category';
 import { CategoryService } from '../../categories/category.service';
 import { Product } from '../product';
 import { ProductService } from '../product.service';
+import { Validators } from '@angular/forms';
 
 @Component({
 	selector: 'app-product-form',
@@ -30,20 +31,33 @@ export class ProductFormComponent
 		super(productService, new Product(), injector);
 
 		if (data) {
+			this.isCreate = false;
 			this.title = 'Atualizar produto';
 			this.btnSubmitLabel = 'Atualizar';
 			delete data.category;
-			const product = Object.assign(new Product(), data);
+			const product: Product = Object.assign(new Product(), data);
 			this.resource = product;
+		} else {
+			this.isCreate = true;
 		}
 	}
 	ngOnInit() {
 		this.getCategories();
+		super.ngOnInit();
 	}
 
-	getCategories = () => {
+	private getCategories = () => {
 		this.categoriesSubscription = this.categoryService.getAll().subscribe(response => {
 			this.categories = response;
+		});
+	};
+
+	protected buildForm = () => {
+		this.resourceForm = this.formBuilder.group({
+			id: [null],
+			name: ['', Validators.required],
+			price: [null, Validators.required],
+			categoryId: [null, Validators.required],
 		});
 	};
 

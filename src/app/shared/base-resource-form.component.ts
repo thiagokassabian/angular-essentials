@@ -1,17 +1,22 @@
 import { Subscription } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { BaseResourceInterface } from './base-resource-interface';
-import { Directive, Injector, OnDestroy } from '@angular/core';
+import { Directive, Injector, OnDestroy, OnInit } from '@angular/core';
 import { BaseResourceService } from './base-resource.service';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Directive()
 export abstract class BaseResourceFormComponent<T extends BaseResourceInterface>
-	implements OnDestroy
+	implements OnInit, OnDestroy
 {
 	protected dialog: MatDialog;
+	protected formBuilder: FormBuilder;
+	resourceForm: FormGroup;
+	submittingForm: boolean = false;
+	isCreate: boolean;
 	private createSubscription: Subscription;
-	private loadResourceSubscription: Subscription;
 	private updateSubscription: Subscription;
+	//private loadResourceSubscription: Subscription;
 
 	constructor(
 		protected baseResourceService: BaseResourceService<T>,
@@ -19,19 +24,33 @@ export abstract class BaseResourceFormComponent<T extends BaseResourceInterface>
 		protected injector: Injector
 	) {
 		this.dialog = injector.get(MatDialog);
+		this.formBuilder = injector.get(FormBuilder);
+	}
+	ngOnInit() {
+		this.buildForm();
+		if (!this.isCreate) this.loadResource();
 	}
 
-	submit = (resource: T) => {
-		if (!resource.id) this.create(resource);
-		else this.update(resource);
+	private loadResource = () => {
+		this.resourceForm.patchValue(this.resource);
 	};
 
-	protected create = (resource: T) => {
-		this.createSubscription = this.baseResourceService.create(resource).subscribe(() => {
-			this.actionsSuccess('Cadastrado com sucesso');
-		});
+	submitForm = () => {
+		this.submittingForm = true;
+		if (this.isCreate) this.create();
+		else this.update();
 	};
 
+	private create = () => {
+		this.createSubscription = this.baseResourceService
+			.create(this.resourceForm.value)
+			.subscribe(() => {
+				this.submittingForm = false;
+				this.actionsSuccess('Cadastrado com sucesso');
+			});
+	};
+
+	//* Método comentado pois não está sendo usado por enquanto
 	// loadResource = (id: number) => {
 	// 	this.loadResourceSubscription = this.baseResourceService
 	// 		.readById(id)
@@ -40,16 +59,21 @@ export abstract class BaseResourceFormComponent<T extends BaseResourceInterface>
 	// 		});
 	// };
 
-	protected update = (resource: T) => {
-		this.updateSubscription = this.baseResourceService.update(resource).subscribe(() => {
-			this.actionsSuccess('Atualizado com sucesso');
-		});
+	private update = () => {
+		this.updateSubscription = this.baseResourceService
+			.update(this.resourceForm.value)
+			.subscribe(() => {
+				this.submittingForm = false;
+				this.actionsSuccess('Atualizado com sucesso');
+			});
 	};
 
-	protected actionsSuccess = (msg: string) => {
+	private actionsSuccess = (msg: string) => {
 		this.baseResourceService.showMessage(msg);
 		this.dialog.closeAll();
 	};
+
+	protected abstract buildForm(): void;
 
 	ngOnDestroy() {
 		if (this.createSubscription) this.createSubscription.unsubscribe();
