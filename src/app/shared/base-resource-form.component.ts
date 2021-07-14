@@ -1,11 +1,17 @@
+import { Subscription } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { BaseResourceInterface } from './base-resource-interface';
-import { Directive, Injector } from '@angular/core';
+import { Directive, Injector, OnDestroy } from '@angular/core';
 import { BaseResourceService } from './base-resource.service';
 
 @Directive()
-export abstract class BaseResourceFormComponent<T extends BaseResourceInterface> {
+export abstract class BaseResourceFormComponent<T extends BaseResourceInterface>
+	implements OnDestroy
+{
 	protected dialog: MatDialog;
+	private createSubscription: Subscription;
+	private loadResourceSubscription: Subscription;
+	private updateSubscription: Subscription;
 
 	constructor(
 		protected baseResourceService: BaseResourceService<T>,
@@ -21,19 +27,21 @@ export abstract class BaseResourceFormComponent<T extends BaseResourceInterface>
 	};
 
 	create = (resource: T) => {
-		this.baseResourceService.create(resource).subscribe(() => {
+		this.createSubscription = this.baseResourceService.create(resource).subscribe(() => {
 			this.actionsSuccess('Cadastrado com sucesso');
 		});
 	};
 
 	loadResource = (id: number) => {
-		this.baseResourceService.readById(id).subscribe(response => {
-			this.resource = response;
-		});
+		this.loadResourceSubscription = this.baseResourceService
+			.readById(id)
+			.subscribe(response => {
+				this.resource = response;
+			});
 	};
 
 	update = (resource: T) => {
-		this.baseResourceService.update(resource).subscribe(() => {
+		this.updateSubscription = this.baseResourceService.update(resource).subscribe(() => {
 			this.actionsSuccess('Atualizado com sucesso');
 		});
 	};
@@ -42,4 +50,10 @@ export abstract class BaseResourceFormComponent<T extends BaseResourceInterface>
 		this.baseResourceService.showMessage(msg);
 		this.dialog.closeAll();
 	};
+
+	ngOnDestroy() {
+		if (this.createSubscription) this.createSubscription.unsubscribe();
+		if (this.loadResourceSubscription) this.loadResourceSubscription.unsubscribe();
+		if (this.updateSubscription) this.updateSubscription.unsubscribe();
+	}
 }

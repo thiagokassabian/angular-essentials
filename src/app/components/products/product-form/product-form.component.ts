@@ -1,12 +1,5 @@
-import {
-	AfterContentChecked,
-	AfterViewChecked,
-	AfterViewInit,
-	Component,
-	Inject,
-	Injector,
-	OnInit,
-} from '@angular/core';
+import { Subscription } from 'rxjs';
+import { Component, Inject, Injector, OnDestroy, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { BaseResourceFormComponent } from 'src/app/shared/base-resource-form.component';
 import { Category } from '../../categories/category';
@@ -19,10 +12,14 @@ import { ProductService } from '../product.service';
 	templateUrl: './product-form.component.html',
 	styleUrls: ['./product-form.component.scss'],
 })
-export class ProductFormComponent extends BaseResourceFormComponent<Product> implements OnInit {
+export class ProductFormComponent
+	extends BaseResourceFormComponent<Product>
+	implements OnInit, OnDestroy
+{
 	title: string = 'Cadastrar produto';
 	btnSubmitLabel: string = 'Cadastrar';
-	categories: Category[] = [];
+	categories: Category[];
+	categoriesSubscription: Subscription;
 
 	constructor(
 		protected productService: ProductService,
@@ -45,8 +42,13 @@ export class ProductFormComponent extends BaseResourceFormComponent<Product> imp
 	}
 
 	getCategories = () => {
-		this.categoryService.getAll().subscribe(response => {
+		this.categoriesSubscription = this.categoryService.getAll().subscribe(response => {
 			this.categories = response;
 		});
 	};
+
+	ngOnDestroy() {
+		this.categoriesSubscription.unsubscribe();
+		super.ngOnDestroy();
+	}
 }

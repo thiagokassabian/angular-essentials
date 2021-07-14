@@ -1,8 +1,8 @@
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { Category } from './../../categories/category';
 import { HeaderDataService } from '../../templates/header/header-data.service';
 import { ProductService } from '../product.service';
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Product } from '../product';
 import { BaseResourceListComponent } from 'src/app/shared/base-resource-list.component';
 import { MatDialog } from '@angular/material/dialog';
@@ -14,9 +14,15 @@ import { CategoryService } from '../../categories/category.service';
 	templateUrl: './product-list.component.html',
 	styleUrls: ['./product-list.component.scss'],
 })
-export class ProductListComponent extends BaseResourceListComponent<Product> {
+export class ProductListComponent
+	extends BaseResourceListComponent<Product>
+	implements OnInit, OnDestroy
+{
 	displayedColumns: string[] = ['id', 'name', 'price', 'category', 'actions'];
-	categories: Category[] = [];
+	categories: Category[];
+	private categoriesSubscription: Subscription;
+	private produtosSubscription: Subscription;
+	private setCategoryProductSubscription: Subscription;
 
 	constructor(
 		protected productService: ProductService,
@@ -31,22 +37,27 @@ export class ProductListComponent extends BaseResourceListComponent<Product> {
 			icon: 'storefront',
 			url: '/products',
 		};
+	}
 
+	ngOnInit() {
 		this.getCategories();
+		super.ngOnInit();
 	}
 
 	getCategories() {
-		this.categoryService.getAll().subscribe(response => {
+		this.categoriesSubscription = this.categoryService.getAll().subscribe(response => {
 			this.categories = response;
 		});
 	}
 
 	loadResources = () => {
-		this.baseResourceService.getAll().subscribe(response => {
-			this.setCategoryProduct(response).subscribe(response => {
-				this.resources = response;
-				this.dataSource.data = response;
-			});
+		this.produtosSubscription = this.baseResourceService.getAll().subscribe(response => {
+			this.setCategoryProductSubscription = this.setCategoryProduct(response).subscribe(
+				response => {
+					this.resources = response;
+					this.dataSource.data = response;
+				}
+			);
 		});
 	};
 
@@ -74,5 +85,12 @@ export class ProductListComponent extends BaseResourceListComponent<Product> {
 		dialogRef.afterClosed().subscribe(result => {
 			if (!result) this.loadResources();
 		});
+	}
+
+	ngOnDestroy() {
+		this.categoriesSubscription.unsubscribe();
+		this.produtosSubscription.unsubscribe();
+		this.setCategoryProductSubscription.unsubscribe();
+		super.ngOnDestroy();
 	}
 }

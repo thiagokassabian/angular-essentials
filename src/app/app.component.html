@@ -1,14 +1,13 @@
-<mat-drawer-container class="container" autosize>
-	<mat-drawer #sidenav class="sidenav" mode="push">
+<mat-sidenav-container class="container" autosize>
+	<mat-sidenav #sidenav class="sidenav">
 		<nav></nav>
-	</mat-drawer>
+	</mat-sidenav>
 
-	<div class="sidenav-content">
-		<header (toggleSidenav)="sidenav.toggle()"></header>
+	<mat-sidenav-content class="sidenav-content">
+		<header (toggleSidenav)="sidenav.toggle()" #header></header>
 		<div class="container">
 			<router-outlet></router-outlet>
 		</div>
 		<footer></footer>
-	</div>
-
-</mat-drawer-container>
+	</mat-sidenav-content>
+</mat-sidenav-container>

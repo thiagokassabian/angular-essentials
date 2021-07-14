@@ -9,6 +9,5 @@ import { CategoryService } from '../categories/category.service';
 export class ProductService extends BaseResourceService<Product> {
 	constructor(protected injector: Injector) {
 		super('products', injector);
-		// super('products/?_expand=category', injector);
 	}
 }

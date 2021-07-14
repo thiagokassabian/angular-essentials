@@ -4,32 +4,27 @@ import { HeaderDataService } from './header-data.service';
 @Component({
 	selector: 'header',
 	templateUrl: './header.component.html',
-	styleUrls: ['./header.component.scss']
+	styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent {
 	@Output() toggleSidenav = new EventEmitter();
 
-	toggleMenu: boolean = false
+	toggleMenu: boolean = true;
 
-	constructor(private headerDataService: HeaderDataService) { }
-
-	ngOnInit(): void {
-	}
+	constructor(private headerDataService: HeaderDataService) {}
 
 	sidenavToggle() {
-		this.toggleSidenav.emit()
-		this.toggleMenu = !this.toggleMenu
+		this.toggleSidenav.emit();
+		// this.toggleMenu = !this.toggleMenu;
 	}
 
 	get title(): string {
-		return this.headerDataService.headerData.title
+		return this.headerDataService.headerData.title;
 	}
 	get icon(): string {
-		return this.headerDataService.headerData.icon
+		return this.headerDataService.headerData.icon;
 	}
 	get url(): string {
-		return this.headerDataService.headerData.url
+		return this.headerDataService.headerData.url;
 	}
-
-
 }
