@@ -1,4 +1,4 @@
-import { Component, Inject, Injector } from '@angular/core';
+import { Component, Inject, Injector, OnInit } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { BaseResourceFormComponent } from 'src/app/shared/base-resource-form.component';
@@ -10,7 +10,7 @@ import { CategoryService } from '../category.service';
 	templateUrl: './category-form.component.html',
 	styleUrls: ['./category-form.component.scss'],
 })
-export class CategoryFormComponent extends BaseResourceFormComponent<Category> {
+export class CategoryFormComponent extends BaseResourceFormComponent<Category> implements OnInit {
 	title: string = 'Cadastrar produto';
 	btnSubmitLabel: string = 'Cadastrar';
 
@@ -20,16 +20,17 @@ export class CategoryFormComponent extends BaseResourceFormComponent<Category> {
 		@Inject(MAT_DIALOG_DATA) public data: Category
 	) {
 		super(categoryService, new Category(), injector);
+	}
 
-		if (data) {
+	ngOnInit() {
+		if (this.data) {
 			this.isCreate = false;
 			this.title = 'Atualizar categoria';
 			this.btnSubmitLabel = 'Atualizar';
-			const category = Object.assign(new Category(), data);
+			const category = Object.assign(new Category(), this.data);
 			this.resource = category;
-		} else {
-			this.isCreate = true;
 		}
+		super.ngOnInit();
 	}
 
 	protected buildForm = () => {

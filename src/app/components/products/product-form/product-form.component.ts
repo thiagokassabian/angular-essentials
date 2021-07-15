@@ -29,20 +29,17 @@ export class ProductFormComponent
 		private categoryService: CategoryService
 	) {
 		super(productService, new Product(), injector);
-
-		if (data) {
-			this.isCreate = false;
-			this.title = 'Atualizar produto';
-			this.btnSubmitLabel = 'Atualizar';
-			delete data.category;
-			const product: Product = Object.assign(new Product(), data);
-			this.resource = product;
-		} else {
-			this.isCreate = true;
-		}
 	}
 	ngOnInit() {
 		this.getCategories();
+		if (this.data) {
+			this.isCreate = false;
+			this.title = 'Atualizar produto';
+			this.btnSubmitLabel = 'Atualizar';
+			delete this.data.category;
+			const product: Product = Object.assign(new Product(), this.data);
+			this.resource = product;
+		}
 		super.ngOnInit();
 	}
 

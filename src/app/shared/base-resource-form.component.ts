@@ -13,7 +13,7 @@ export abstract class BaseResourceFormComponent<T extends BaseResourceInterface>
 	protected formBuilder: FormBuilder;
 	resourceForm: FormGroup;
 	submittingForm: boolean = false;
-	isCreate: boolean;
+	protected isCreate: boolean = true;
 	private createSubscription: Subscription;
 	private updateSubscription: Subscription;
 	//private loadResourceSubscription: Subscription;
