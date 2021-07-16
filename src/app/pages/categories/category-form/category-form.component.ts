@@ -1,7 +1,8 @@
 import { Component, Inject, Injector, OnInit } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { BaseResourceFormComponent } from 'src/app/shared/base-resource-form.component';
+
+import { BaseResourceFormComponent } from 'src/app/shared/base-resources/base-resource-form.component';
 import { Category } from '../category';
 import { CategoryService } from '../category.service';
 
@@ -23,15 +24,17 @@ export class CategoryFormComponent extends BaseResourceFormComponent<Category> i
 	}
 
 	ngOnInit() {
-		if (this.data) {
-			this.isCreate = false;
-			this.title = 'Atualizar categoria';
-			this.btnSubmitLabel = 'Atualizar';
-			const category = Object.assign(new Category(), this.data);
-			this.resource = category;
-		}
+		if (this.data) this.editForm();
 		super.ngOnInit();
 	}
+
+	protected editForm = () => {
+		this.isCreate = false;
+		this.title = 'Atualizar categoria';
+		this.btnSubmitLabel = 'Atualizar';
+		const category = Object.assign(new Category(), this.data);
+		this.resource = category;
+	};
 
 	protected buildForm = () => {
 		this.resourceForm = this.formBuilder.group({

@@ -1,13 +1,14 @@
-import { Observable, Subscription } from 'rxjs';
-import { Category } from './../../categories/category';
-import { HeaderDataService } from '../../templates/header/header-data.service';
-import { ProductService } from '../product.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Product } from '../product';
-import { BaseResourceListComponent } from 'src/app/shared/base-resource-list.component';
 import { MatDialog } from '@angular/material/dialog';
-import { ProductFormComponent } from '../product-form/product-form.component';
+import { Observable, Subscription } from 'rxjs';
+
+import { BaseResourceListComponent } from 'src/app/shared/base-resources/base-resource-list.component';
+import { HeaderDataService } from 'src/app/core/header/header-data.service';
+import { ProductService } from '../product.service';
+import { Product } from '../product';
+import { Category } from './../../categories/category';
 import { CategoryService } from '../../categories/category.service';
+import { ProductFormComponent } from '../product-form/product-form.component';
 
 @Component({
 	selector: 'product-list',

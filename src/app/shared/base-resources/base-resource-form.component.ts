@@ -1,9 +1,10 @@
-import { Subscription } from 'rxjs';
-import { MatDialog } from '@angular/material/dialog';
-import { BaseResourceInterface } from './base-resource-interface';
 import { Directive, Injector, OnDestroy, OnInit } from '@angular/core';
-import { BaseResourceService } from './base-resource.service';
+import { MatDialog } from '@angular/material/dialog';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Subscription } from 'rxjs';
+
+import { BaseResourceInterface } from './base-resource-interface';
+import { BaseResourceService } from './base-resource.service';
 
 @Directive()
 export abstract class BaseResourceFormComponent<T extends BaseResourceInterface>
@@ -74,6 +75,8 @@ export abstract class BaseResourceFormComponent<T extends BaseResourceInterface>
 	};
 
 	protected abstract buildForm(): void;
+
+	protected abstract editForm(): void;
 
 	ngOnDestroy() {
 		if (this.createSubscription) this.createSubscription.unsubscribe();

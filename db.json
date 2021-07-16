@@ -58,7 +58,7 @@
   "categories": [
     {
       "id": 1,
-      "name": "Eletro"
+      "name": "Eletro1"
     },
     {
       "id": 2,
@@ -79,6 +79,14 @@
     {
       "id": 6,
       "name": "teste2"
+    },
+    {
+      "id": 7,
+      "name": "teste3"
+    },
+    {
+      "id": 8,
+      "name": "teste4"
     }
   ]
 }

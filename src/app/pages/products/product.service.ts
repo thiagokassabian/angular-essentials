@@ -1,7 +1,7 @@
-import { BaseResourceService } from '../../shared/base-resource.service';
-import { Product } from './product';
 import { Injectable, Injector } from '@angular/core';
-import { CategoryService } from '../categories/category.service';
+
+import { BaseResourceService } from 'src/app/shared/base-resources/base-resource.service';
+import { Product } from './product';
 
 @Injectable({
 	providedIn: 'root',

@@ -1,12 +1,13 @@
-import { Subscription } from 'rxjs';
 import { Component, Inject, Injector, OnDestroy, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { BaseResourceFormComponent } from 'src/app/shared/base-resource-form.component';
-import { Category } from '../../categories/category';
-import { CategoryService } from '../../categories/category.service';
+import { Validators } from '@angular/forms';
+import { Subscription } from 'rxjs';
+
+import { BaseResourceFormComponent } from 'src/app/shared/base-resources/base-resource-form.component';
 import { Product } from '../product';
 import { ProductService } from '../product.service';
-import { Validators } from '@angular/forms';
+import { Category } from '../../categories/category';
+import { CategoryService } from '../../categories/category.service';
 
 @Component({
 	selector: 'app-product-form',
@@ -30,18 +31,21 @@ export class ProductFormComponent
 	) {
 		super(productService, new Product(), injector);
 	}
+
 	ngOnInit() {
 		this.getCategories();
-		if (this.data) {
-			this.isCreate = false;
-			this.title = 'Atualizar produto';
-			this.btnSubmitLabel = 'Atualizar';
-			delete this.data.category;
-			const product: Product = Object.assign(new Product(), this.data);
-			this.resource = product;
-		}
+		if (this.data) this.editForm();
 		super.ngOnInit();
 	}
+
+	protected editForm = () => {
+		this.isCreate = false;
+		this.title = 'Atualizar produto';
+		this.btnSubmitLabel = 'Atualizar';
+		delete this.data.category;
+		const product: Product = Object.assign(new Product(), this.data);
+		this.resource = product;
+	};
 
 	private getCategories = () => {
 		this.categoriesSubscription = this.categoryService.getAll().subscribe(response => {

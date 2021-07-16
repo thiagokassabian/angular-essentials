@@ -1,12 +1,11 @@
-import { HeaderDataService } from '../../templates/header/header-data.service';
-import { CategoryService } from '../category.service';
 import { Component } from '@angular/core';
-import { Category } from '../category';
-import { BaseResourceListComponent } from 'src/app/shared/base-resource-list.component';
 import { MatDialog } from '@angular/material/dialog';
-import { CategoryFormComponent } from '../category-form/category-form.component';
 
-type Action = 'edit' | undefined;
+import { BaseResourceListComponent } from 'src/app/shared/base-resources/base-resource-list.component';
+import { HeaderDataService } from 'src/app/core/header/header-data.service';
+import { Category } from '../category';
+import { CategoryService } from '../category.service';
+import { CategoryFormComponent } from '../category-form/category-form.component';
 
 @Component({
 	selector: 'category-list',

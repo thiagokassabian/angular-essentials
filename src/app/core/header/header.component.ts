@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { HeaderDataService } from './header-data.service';
 
 @Component({
@@ -8,7 +8,6 @@ import { HeaderDataService } from './header-data.service';
 })
 export class HeaderComponent {
 	@Output() toggleSidenav = new EventEmitter();
-
 	toggleMenu: boolean = true;
 
 	constructor(private headerDataService: HeaderDataService) {}

@@ -1,10 +1,11 @@
-import { Subscription } from 'rxjs';
-import { BaseResourceInterface } from './base-resource-interface';
 import { Directive, OnInit, ViewChild, AfterViewInit, OnDestroy } from '@angular/core';
-import { BaseResourceService } from './base-resource.service';
+import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { MatTableDataSource } from '@angular/material/table';
+import { Subscription } from 'rxjs';
+
+import { BaseResourceInterface } from './base-resource-interface';
+import { BaseResourceService } from './base-resource.service';
 
 @Directive()
 export abstract class BaseResourceListComponent<T extends BaseResourceInterface>
