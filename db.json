@@ -53,6 +53,18 @@
       "price": "3299.90",
       "categoryId": 1,
       "id": 9
+    },
+    {
+      "id": 10,
+      "name": "teste",
+      "price": "123",
+      "categoryId": 2
+    },
+    {
+      "id": 11,
+      "name": "teste",
+      "price": 1.23,
+      "categoryId": 1
     }
   ],
   "categories": [

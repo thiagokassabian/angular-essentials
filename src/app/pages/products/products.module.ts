@@ -1,5 +1,8 @@
-import { ProductsRoutingModule } from './products-routing.module';
 import { NgModule } from '@angular/core';
+import { ProductsRoutingModule } from './products-routing.module';
+
+import { SharedModule } from './../../shared/shared.module';
+
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
@@ -8,12 +11,12 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
+import { MatButtonModule } from '@angular/material/button';
 
-import { SharedModule } from './../../shared/shared.module';
+import { CurrencyMaskModule } from 'ng2-currency-mask';
 
 import { ProductFormComponent } from './product-form/product-form.component';
 import { ProductListComponent } from './product-list/product-list.component';
-import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
 	imports: [
@@ -28,6 +31,7 @@ import { MatButtonModule } from '@angular/material/button';
 		MatDialogModule,
 		MatIconModule,
 		MatButtonModule,
+		CurrencyMaskModule,
 	],
 	exports: [],
 	declarations: [ProductListComponent, ProductFormComponent],
