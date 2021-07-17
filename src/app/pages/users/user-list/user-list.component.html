@@ -1,0 +1,14 @@
+<h2>Usuários</h2>
+<div class="users-template">
+	<div class="nav-container">
+		<mat-nav-list>
+			<a mat-list-item *ngFor="let user of resources" [routerLink]="[user.id]">
+				<mat-icon aria-hidden="true">chevron_right</mat-icon>
+				{{user.name}}
+			</a>
+		</mat-nav-list>
+	</div>
+	<div class="detail-container">
+		<router-outlet></router-outlet>
+	</div>
+</div>

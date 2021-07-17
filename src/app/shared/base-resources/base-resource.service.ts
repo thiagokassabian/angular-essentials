@@ -30,11 +30,11 @@ export abstract class BaseResourceService<T extends BaseResourceInterface> {
 			catchError(e => this.handleError(e))
 		);
 
-	// readById = (id: number): Observable<T> =>
-	// 	this.http.get<T>(`${this.urlBase}/${this.resource}/${id}`).pipe(
-	// 		map(obj => obj),
-	// 		catchError(e => this.handleError(e))
-	// 	);
+	readById = (id: number): Observable<T> =>
+		this.http.get<T>(`${this.urlBase}/${this.resource}/${id}`).pipe(
+			map(obj => obj),
+			catchError(e => this.handleError(e))
+		);
 
 	update = (resource: T): Observable<T> =>
 		this.http.put<T>(`${this.urlBase}/${this.resource}/${resource.id}`, resource).pipe(

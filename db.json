@@ -1,104 +1,81 @@
 {
-  "products": [
-    {
-      "id": 1,
-      "name": "Celular Samsung S20+",
-      "price": 1000,
-      "categoryId": 3
-    },
-    {
-      "name": "Geladeira Electrolux",
-      "price": "3250.20",
-      "id": 2,
-      "categoryId": 1
-    },
-    {
-      "id": 3,
-      "name": "Notebook Dell",
-      "price": "9999.90",
-      "categoryId": 4
-    },
-    {
-      "name": "Mouse Logitech",
-      "price": "299.89",
-      "id": 4,
-      "categoryId": 4
-    },
-    {
-      "name": "Fone JBL",
-      "price": "150.50",
-      "id": 5,
-      "categoryId": 1
-    },
-    {
-      "name": "Celular iPhone XR",
-      "price": "7500.49",
-      "id": 6,
-      "categoryId": 3
-    },
-    {
-      "name": "Carregador de celular",
-      "price": "59.99",
-      "categoryId": 3,
-      "id": 7
-    },
-    {
-      "id": 8,
-      "name": "Aspirador de pó Philco",
-      "price": "129.90",
-      "categoryId": 1
-    },
-    {
-      "name": "Geladeira Brastemp",
-      "price": "3299.90",
-      "categoryId": 1,
-      "id": 9
-    },
-    {
-      "id": 10,
-      "name": "teste",
-      "price": "123",
-      "categoryId": 2
-    },
-    {
-      "id": 11,
-      "name": "teste",
-      "price": 1.23,
-      "categoryId": 1
-    }
-  ],
-  "categories": [
-    {
-      "id": 1,
-      "name": "Eletro1"
-    },
-    {
-      "id": 2,
-      "name": "TVs"
-    },
-    {
-      "id": 3,
-      "name": "Celulares"
-    },
-    {
-      "id": 4,
-      "name": "Informática"
-    },
-    {
-      "id": 5,
-      "name": "teste"
-    },
-    {
-      "id": 6,
-      "name": "teste2"
-    },
-    {
-      "id": 7,
-      "name": "teste3"
-    },
-    {
-      "id": 8,
-      "name": "teste4"
-    }
-  ]
+	"products": [
+		{
+			"id": 1,
+			"name": "Celular Samsung S20+",
+			"price": 1000,
+			"categoryId": 3
+		},
+		{
+			"name": "Geladeira Electrolux",
+			"price": "3250.20",
+			"id": 2,
+			"categoryId": 1
+		},
+		{
+			"id": 3,
+			"name": "Notebook Dell",
+			"price": "9999.90",
+			"categoryId": 4
+		},
+		{
+			"name": "Mouse Logitech",
+			"price": "299.89",
+			"id": 4,
+			"categoryId": 4
+		},
+		{
+			"name": "Fone JBL",
+			"price": "150.50",
+			"id": 5,
+			"categoryId": 1
+		},
+		{
+			"name": "Celular iPhone XR",
+			"price": "7500.49",
+			"id": 6,
+			"categoryId": 3
+		},
+		{
+			"name": "Carregador de celular",
+			"price": "59.99",
+			"categoryId": 3,
+			"id": 7
+		},
+		{
+			"id": 8,
+			"name": "Aspirador de pó Philco",
+			"price": "129.90",
+			"categoryId": 1
+		},
+		{
+			"name": "Geladeira Brastemp",
+			"price": "3299.90",
+			"categoryId": 1,
+			"id": 9
+		}
+	],
+	"categories": [
+		{
+			"id": 1,
+			"name": "Eletro"
+		},
+		{
+			"id": 2,
+			"name": "TVs"
+		},
+		{
+			"id": 3,
+			"name": "Celulares"
+		},
+		{
+			"id": 4,
+			"name": "Informática"
+		}
+	],
+	"users": [
+		{ "id": 1, "name": "Thiago", "email": "thiago@gmail.com" },
+		{ "id": 2, "name": "Lucas", "email": "lucas@gmail.com" },
+		{ "id": 3, "name": "Vanessa", "email": "vanessa@gmail.com" }
+	]
 }

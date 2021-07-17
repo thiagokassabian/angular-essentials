@@ -1,0 +1,15 @@
+.users-template {
+	display: flex;
+
+	.nav-container {
+		margin-right: 15px;
+
+		.mat-nav-list {
+			padding-top: 0;
+		}
+	}
+
+	.detail-container {
+		flex-grow: 1;
+	}
+}
