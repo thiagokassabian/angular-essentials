@@ -1,13 +1,14 @@
 <mat-sidenav-container class="container" autosize>
-	<mat-sidenav #sidenav class="sidenav">
-		<nav></nav>
+	<mat-sidenav #sidenav [autoFocus]="false">
+		<sidenav></sidenav>
 	</mat-sidenav>
 
-	<mat-sidenav-content class="sidenav-content">
-		<header (toggleSidenav)="sidenav.toggle()" #header></header>
+	<mat-sidenav-content>
+		<!-- <header *ngIf="showMenu"></header> -->
+		<header></header>
 		<div class="container">
 			<router-outlet></router-outlet>
 		</div>
-		<!-- <footer></footer> -->
+		<footer></footer>
 	</mat-sidenav-content>
 </mat-sidenav-container>

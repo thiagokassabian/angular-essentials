@@ -1,3 +1,4 @@
+import { SidenavService } from '../sidenav/sidenav.service';
 import { Component, EventEmitter, Output } from '@angular/core';
 import { HeaderDataService } from './header-data.service';
 
@@ -7,14 +8,15 @@ import { HeaderDataService } from './header-data.service';
 	styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent {
-	@Output() toggleSidenav = new EventEmitter();
 	toggleMenu: boolean = true;
 
-	constructor(private headerDataService: HeaderDataService) {}
+	constructor(
+		private headerDataService: HeaderDataService,
+		private sidenavService: SidenavService
+	) {}
 
 	sidenavToggle() {
-		this.toggleSidenav.emit();
-		// this.toggleMenu = !this.toggleMenu;
+		this.sidenavService.toggle();
 	}
 
 	get title(): string {

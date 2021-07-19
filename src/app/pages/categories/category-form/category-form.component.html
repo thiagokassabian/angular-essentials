@@ -5,7 +5,6 @@
 			<mat-form-field>
 				<mat-label>Nome</mat-label>
 				<input matInput placeholder="Nome" formControlName="name" name="name">
-				<!-- <input matInput placeholder="Nome" formControlName="name" [(ngModel)]="resource.name" name="name"> -->
 			</mat-form-field>
 		</div>
 	</div>
@@ -14,5 +13,4 @@
 			[disabled]="submittingForm || resourceForm.invalid">{{btnSubmitLabel}}</button>
 		<button mat-raised-button [mat-dialog-close]="true">Cancelar</button>
 	</div>
-
 </form>

@@ -19,7 +19,7 @@ import { CurrencyMaskConfig, CURRENCY_MASK_CONFIG } from 'ng2-currency-mask';
 
 //Components
 import { HeaderComponent } from './header/header.component';
-import { NavComponent } from './nav/nav.component';
+import { SidenavComponent } from './sidenav/sidenav.component';
 import { FooterComponent } from './footer/footer.component';
 
 registerLocaleData(ptBr);
@@ -35,7 +35,7 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
 };
 
 @NgModule({
-	declarations: [HeaderComponent, NavComponent, FooterComponent],
+	declarations: [HeaderComponent, SidenavComponent, FooterComponent],
 	imports: [
 		CommonModule,
 		BrowserModule,
@@ -54,7 +54,7 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
 		BrowserAnimationsModule,
 		HttpClientModule,
 		HeaderComponent,
-		NavComponent,
+		SidenavComponent,
 		FooterComponent,
 		MatSidenavModule,
 	],

@@ -12,7 +12,7 @@ import { CategoryService } from '../category.service';
 	styleUrls: ['./category-form.component.scss'],
 })
 export class CategoryFormComponent extends BaseResourceFormComponent<Category> implements OnInit {
-	title: string = 'Cadastrar produto';
+	title: string = 'Cadastrar categoria';
 	btnSubmitLabel: string = 'Cadastrar';
 
 	constructor(

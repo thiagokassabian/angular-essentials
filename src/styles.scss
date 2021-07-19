@@ -9,14 +9,17 @@ body {
 }
 
 /** ESTRUTURA **/
-.mat-drawer-container {
+.mat-sidenav-container {
 	height: 100%;
+	padding-top: 64px;
 
-	.sidenav-content {
-		// padding: 64px 0 44px;
+	.mat-sidenav-content {
+		display: flex;
+		flex-direction: column;
 
 		.container {
 			padding: 1.5rem;
+			flex-grow: 1;
 		}
 	}
 }
@@ -61,4 +64,11 @@ body {
 }
 .msg-error {
 	background-color: rgb(227, 94, 107);
+}
+
+/* @MEDIA */
+@media (max-width: 599px) {
+	.mat-sidenav-container {
+		padding-top: 56px;
+	}
 }
