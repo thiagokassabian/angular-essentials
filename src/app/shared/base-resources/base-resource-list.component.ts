@@ -1,4 +1,4 @@
-import { Directive, OnInit, ViewChild, AfterViewInit, OnDestroy } from '@angular/core';
+import { Directive, OnInit, ViewChild, AfterViewInit, OnDestroy, Injector } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -6,6 +6,11 @@ import { Subscription } from 'rxjs';
 
 import { BaseResourceInterface } from './base-resource-interface';
 import { BaseResourceService } from './base-resource.service';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+
+export interface ComponentType<C = any> {
+	new (...args: any[]): C;
+}
 
 @Directive()
 export abstract class BaseResourceListComponent<T extends BaseResourceInterface>
@@ -17,8 +22,17 @@ export abstract class BaseResourceListComponent<T extends BaseResourceInterface>
 	dataSource = new MatTableDataSource();
 	private loadResourcesSubscription: Subscription;
 	private deleteSubscription: Subscription;
+	private dialogAfterCloseSubscription: Subscription;
+	protected dialog: MatDialog;
+	protected dialogRef: MatDialogRef<ComponentType>;
+	protected selectedResource: Object;
 
-	constructor(protected baseResourceService: BaseResourceService<T>) {}
+	constructor(
+		protected baseResourceService: BaseResourceService<T>,
+		protected injector: Injector
+	) {
+		this.dialog = this.injector.get(MatDialog);
+	}
 
 	ngOnInit() {
 		this.loadResources();
@@ -53,8 +67,20 @@ export abstract class BaseResourceListComponent<T extends BaseResourceInterface>
 		}
 	}
 
+	dialogForm(componentForm: ComponentType, resource?: any) {
+		this.selectedResource = {};
+		if (resource) {
+			this.selectedResource = { data: { ...resource } };
+		}
+		const dialog = this.dialog.open(componentForm, this.selectedResource);
+		dialog.afterClosed().subscribe(result => {
+			if (!result) this.loadResources();
+		});
+	}
+
 	ngOnDestroy() {
 		if (this.loadResourcesSubscription) this.loadResourcesSubscription.unsubscribe();
 		if (this.deleteSubscription) this.deleteSubscription.unsubscribe();
+		if (this.dialogAfterCloseSubscription) this.dialogAfterCloseSubscription.unsubscribe();
 	}
 }

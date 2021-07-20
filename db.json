@@ -9,7 +9,7 @@
     {
       "id": 3,
       "name": "Notebook Dell",
-      "price": "9999.90",
+      "price": 8999.9,
       "categoryId": 4
     },
     {
@@ -32,15 +32,45 @@
     },
     {
       "id": 8,
-      "name": "asd",
-      "price": 1.32,
-      "categoryId": 3
+      "name": "Geladeira Brastemp",
+      "price": 3499,
+      "categoryId": 5
     },
     {
       "id": 9,
-      "name": "asd",
-      "price": 1.23,
+      "name": "Aspirador Electrolux",
+      "price": 149,
+      "categoryId": 5
+    },
+    {
+      "id": 10,
+      "name": "Lavadora Electrolux",
+      "price": 2499.9,
+      "categoryId": 5
+    },
+    {
+      "id": 11,
+      "name": "TV 50\" LG",
+      "price": 2199.9,
+      "categoryId": 2
+    },
+    {
+      "id": 12,
+      "name": "Celular Xiaomi Redmi 9",
+      "price": 1890,
       "categoryId": 3
+    },
+    {
+      "id": 13,
+      "name": "Placa de vídeo",
+      "price": 900,
+      "categoryId": 4
+    },
+    {
+      "id": 14,
+      "name": "Liquidificador Philco",
+      "price": 350.9,
+      "categoryId": 5
     }
   ],
   "categories": [
@@ -58,7 +88,7 @@
     },
     {
       "id": 5,
-      "name": "teste"
+      "name": "Eletrodomésticos"
     }
   ],
   "users": [

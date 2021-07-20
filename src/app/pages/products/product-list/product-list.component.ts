@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Injector, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Observable, Subscription } from 'rxjs';
 
@@ -28,10 +28,10 @@ export class ProductListComponent
 	constructor(
 		protected productService: ProductService,
 		private headerDataService: HeaderDataService,
-		private dialog: MatDialog,
+		protected injector: Injector,
 		private categoryService: CategoryService
 	) {
-		super(productService);
+		super(productService, injector);
 
 		this.headerDataService.headerData = {
 			title: 'Produtos',
@@ -76,22 +76,13 @@ export class ProductListComponent
 			subscriber.complete();
 		});
 
-	openDialog(product?: any) {
-		let data = {};
-		if (product) {
-			data = { data: { ...product } };
-		}
-		const dialogRef = this.dialog.open(ProductFormComponent, data);
-
-		dialogRef.afterClosed().subscribe(result => {
-			if (!result) this.loadResources();
-		});
+	openDialog(resource?: any) {
+		this.dialogForm(ProductFormComponent, resource);
 	}
 
 	ngOnDestroy() {
 		this.categoriesSubscription.unsubscribe();
 		this.produtosSubscription.unsubscribe();
 		this.setCategoryProductSubscription.unsubscribe();
-		super.ngOnDestroy();
 	}
 }

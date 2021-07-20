@@ -29,23 +29,18 @@ export class ProductFormComponent
 		@Inject(MAT_DIALOG_DATA) public data: any,
 		private categoryService: CategoryService
 	) {
-		super(productService, new Product(), injector);
+		super(productService, new Product(), injector, data);
+
+		if (this.data) {
+			this.title = 'Atualizar produto';
+			this.btnSubmitLabel = 'Atualizar';
+		}
 	}
 
 	ngOnInit() {
 		this.getCategories();
-		if (this.data) this.editForm();
 		super.ngOnInit();
 	}
-
-	protected editForm = () => {
-		this.isCreate = false;
-		this.title = 'Atualizar produto';
-		this.btnSubmitLabel = 'Atualizar';
-		delete this.data.category;
-		const product: Product = Object.assign(new Product(), this.data);
-		this.resource = product;
-	};
 
 	private getCategories = () => {
 		this.categoriesSubscription = this.categoryService.getAll().subscribe(response => {

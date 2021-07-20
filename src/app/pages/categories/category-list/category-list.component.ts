@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Injector } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 
 import { BaseResourceListComponent } from 'src/app/shared/base-resources/base-resource-list.component';
@@ -19,9 +19,9 @@ export class CategoryListComponent extends BaseResourceListComponent<Category> {
 	constructor(
 		protected categoryService: CategoryService,
 		private headerDataService: HeaderDataService,
-		private dialog: MatDialog
+		protected injector: Injector
 	) {
-		super(categoryService);
+		super(categoryService, injector);
 
 		this.headerDataService.headerData = {
 			title: 'Categorias',
@@ -29,15 +29,7 @@ export class CategoryListComponent extends BaseResourceListComponent<Category> {
 			url: '/categories',
 		};
 	}
-
-	openDialog(category?: Category) {
-		let data = {};
-		if (category) data = { data: category };
-		const dialogRef = this.dialog.open(CategoryFormComponent, data);
-
-		dialogRef.afterClosed().subscribe(result => {
-			if (!result) this.loadResources();
-			else console.log(result);
-		});
+	openDialog(resource?: any) {
+		this.dialogForm(CategoryFormComponent, resource);
 	}
 }

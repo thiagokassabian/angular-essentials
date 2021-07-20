@@ -20,21 +20,13 @@ export class CategoryFormComponent extends BaseResourceFormComponent<Category> i
 		protected injector: Injector,
 		@Inject(MAT_DIALOG_DATA) public data: Category
 	) {
-		super(categoryService, new Category(), injector);
-	}
+		super(categoryService, new Category(), injector, data);
 
-	ngOnInit() {
-		if (this.data) this.editForm();
-		super.ngOnInit();
+		if (this.data) {
+			this.title = 'Atualizar categoria';
+			this.btnSubmitLabel = 'Atualizar';
+		}
 	}
-
-	protected editForm = () => {
-		this.isCreate = false;
-		this.title = 'Atualizar categoria';
-		this.btnSubmitLabel = 'Atualizar';
-		const category = Object.assign(new Category(), this.data);
-		this.resource = category;
-	};
 
 	protected buildForm = () => {
 		this.resourceForm = this.formBuilder.group({

@@ -1,6 +1,6 @@
-import { Directive, Injector, OnDestroy, OnInit, HostListener } from '@angular/core';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { AbstractControl, FormBuilder, FormGroup, ValidatorFn } from '@angular/forms';
+import { Directive, Injector, OnDestroy, OnInit, HostListener, Inject } from '@angular/core';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
 
 import { BaseResourceInterface } from './base-resource-interface';
@@ -31,16 +31,20 @@ export abstract class BaseResourceFormComponent<T extends BaseResourceInterface>
 	constructor(
 		protected baseResourceService: BaseResourceService<T>,
 		public resource: T,
-		protected injector: Injector
+		protected injector: Injector,
+		@Inject(MAT_DIALOG_DATA) public data: any
 	) {
-		this.dialog = injector.get(MatDialog);
 		this.formBuilder = injector.get(FormBuilder);
+		this.dialog = injector.get(MatDialog);
 		this.dialogRef = injector.get(MatDialogRef);
 	}
 	ngOnInit() {
 		this.buildForm();
-		if (!this.isCreate) this.loadResource();
+		if (this.data) this.loadResource();
+		this.dialogRefConfig();
+	}
 
+	private dialogRefConfig = () => {
 		this.dialogRef.disableClose = true;
 		this.backdropSubscription = this.dialogRef.backdropClick().subscribe(() => {
 			const form = this.resourceForm;
@@ -51,9 +55,11 @@ export abstract class BaseResourceFormComponent<T extends BaseResourceInterface>
 				this.dialogRef.close();
 			}
 		});
-	}
+	};
 
-	private loadResource = () => {
+	protected loadResource = () => {
+		this.isCreate = false;
+		this.resource = Object.assign(this.resource, this.data);
 		this.resourceForm.patchValue(this.resource);
 	};
 
@@ -92,7 +98,7 @@ export abstract class BaseResourceFormComponent<T extends BaseResourceInterface>
 
 	private actionsSuccess = (msg: string) => {
 		this.baseResourceService.showMessage(msg);
-		this.dialog.closeAll();
+		this.dialogRef.close();
 	};
 
 	protected confirmCloseDialog = () => {
@@ -105,12 +111,10 @@ export abstract class BaseResourceFormComponent<T extends BaseResourceInterface>
 
 	protected abstract buildForm(): void;
 
-	protected abstract editForm(): void;
-
 	ngOnDestroy() {
 		if (this.createSubscription) this.createSubscription.unsubscribe();
 		if (this.updateSubscription) this.updateSubscription.unsubscribe();
 		if (this.backdropSubscription) this.backdropSubscription.unsubscribe();
-		// if (this.loadResourceSubscription) this.loadResourceSubscription.unsubscribe();
+		// if (this.loadResourceSubscription) this.loadResourceSubscription.unsubscribe(); //* método subscribe comentado
 	}
 }

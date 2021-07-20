@@ -6,20 +6,18 @@ body {
 body {
 	margin: 0;
 	font-family: Roboto, 'Helvetica Neue', sans-serif;
+	background: #fafafa;
 }
 
 /** ESTRUTURA **/
 .mat-sidenav-container {
-	height: 100%;
 	padding-top: 64px;
 
 	.mat-sidenav-content {
-		display: flex;
-		flex-direction: column;
-
-		.container {
+		> .container {
 			padding: 1.5rem;
-			flex-grow: 1;
+			max-width: 1140px;
+			margin: auto;
 		}
 	}
 }
