@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
@@ -6,10 +6,6 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 	templateUrl: './confirmation.component.html',
 	styleUrls: ['./confirmation.component.scss'],
 })
-export class ConfirmationComponent implements OnInit {
+export class ConfirmationComponent {
 	constructor(@Inject(MAT_DIALOG_DATA) public message: string) {}
-
-	ngOnInit(): void {
-		console.log(this.message);
-	}
 }
