@@ -1,5 +1,5 @@
 import { SidenavService } from './sidenav.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 
 @Component({
@@ -7,12 +7,14 @@ import { NavigationEnd, Router } from '@angular/router';
 	templateUrl: './sidenav.component.html',
 	styleUrls: ['./sidenav.component.scss'],
 })
-export class SidenavComponent implements OnInit {
-	constructor(private router: Router, private sidenav: SidenavService) {}
+export class SidenavComponent implements AfterViewInit {
+	constructor(private router: Router, private sidenavService: SidenavService) {}
 
-	ngOnInit() {
+	ngAfterViewInit(): void {
 		this.router.events.subscribe(event => {
-			if (event instanceof NavigationEnd) this.sidenav.close();
+			if (event instanceof NavigationEnd) this.sidenavService.close();
 		});
 	}
+
+	ngOnInit() {}
 }

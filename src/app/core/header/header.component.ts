@@ -8,15 +8,18 @@ import { HeaderDataService } from './header-data.service';
 	styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent {
-	toggleMenu: boolean = true;
-
 	constructor(
 		private headerDataService: HeaderDataService,
 		private sidenavService: SidenavService
 	) {}
 
-	sidenavToggle() {
+	toggleSidenav() {
+		this.sidenavService.toggleSidebarVisibility();
 		this.sidenavService.toggle();
+	}
+
+	get isSidebarVisible(): boolean {
+		return this.sidenavService.isSidebarVisible;
 	}
 
 	get title(): string {

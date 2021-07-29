@@ -50,7 +50,7 @@ export abstract class BaseResourceFormComponent<T extends BaseResourceInterface>
 			const form = this.resourceForm;
 			const hasValue = Object.keys(form.value).some(k => !!form.value[k]);
 			if (form.dirty && hasValue) {
-				this.confirmCloseDialog();
+				this.confirmDialog();
 			} else {
 				this.dialogRef.close();
 			}
@@ -101,8 +101,9 @@ export abstract class BaseResourceFormComponent<T extends BaseResourceInterface>
 		this.dialogRef.close();
 	};
 
-	protected confirmCloseDialog = () => {
-		let dialogRef = this.dialog.open(ConfirmationComponent);
+	protected confirmDialog = () => {
+		let message: Object = { data: 'Você alterou o formulário, deseja sair sem salvar?' };
+		let dialogRef = this.dialog.open(ConfirmationComponent, message);
 
 		dialogRef.afterClosed().subscribe(confirm => {
 			if (confirm) this.dialogRef.close();

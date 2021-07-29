@@ -16,7 +16,6 @@ export class AppComponent implements OnInit, AfterViewInit {
 
 	ngOnInit() {
 		this.authService.showMenu.subscribe(response => {
-			console.log(response);
 			this.showMenu = response;
 		});
 	}
@@ -24,4 +23,6 @@ export class AppComponent implements OnInit, AfterViewInit {
 	ngAfterViewInit() {
 		this.sidenavService.setSidenav(this.sidenav);
 	}
+
+	closeSidenav = () => this.sidenavService.toggleSidebarVisibility();
 }

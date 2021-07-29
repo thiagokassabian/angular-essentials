@@ -7,6 +7,7 @@ import { Subscription } from 'rxjs';
 import { BaseResourceInterface } from './base-resource-interface';
 import { BaseResourceService } from './base-resource.service';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { ConfirmationComponent } from '../components/confirmation/confirmation.component';
 
 export interface ComponentType<C = any> {
 	new (...args: any[]): C;
@@ -77,6 +78,15 @@ export abstract class BaseResourceListComponent<T extends BaseResourceInterface>
 			if (!result) this.loadResources();
 		});
 	}
+
+	confirmDialog = (id: number) => {
+		let message = { data: 'Tem certeza que deseja excluir?' };
+		let dialogRef = this.dialog.open(ConfirmationComponent, message);
+
+		dialogRef.afterClosed().subscribe(confirm => {
+			if (confirm) this.delete(id);
+		});
+	};
 
 	ngOnDestroy() {
 		if (this.loadResourcesSubscription) this.loadResourcesSubscription.unsubscribe();

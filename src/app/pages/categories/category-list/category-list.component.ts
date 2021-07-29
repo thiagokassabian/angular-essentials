@@ -1,12 +1,10 @@
 import { Component, Injector } from '@angular/core';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 
 import { BaseResourceListComponent } from 'src/app/shared/base-resources/base-resource-list.component';
 import { HeaderDataService } from 'src/app/core/header/header-data.service';
 import { Category } from '../category';
 import { CategoryService } from '../category.service';
 import { CategoryFormComponent } from '../category-form/category-form.component';
-import { ConfirmationComponent } from 'src/app/shared/components/confirmation/confirmation.component';
 
 @Component({
 	selector: 'category-list',
@@ -29,6 +27,7 @@ export class CategoryListComponent extends BaseResourceListComponent<Category> {
 			url: '/categories',
 		};
 	}
+
 	openDialog(resource?: any) {
 		this.dialogForm(CategoryFormComponent, resource);
 	}

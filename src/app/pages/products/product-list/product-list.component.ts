@@ -1,5 +1,4 @@
 import { Component, Injector, OnDestroy, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
 import { Observable, Subscription } from 'rxjs';
 
 import { BaseResourceListComponent } from 'src/app/shared/base-resources/base-resource-list.component';

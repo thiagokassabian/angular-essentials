@@ -1,6 +1,6 @@
 <header></header>
-<mat-sidenav-container fullscreen>
-	<mat-sidenav #sidenav [autoFocus]="false" [fixedInViewport]="true" fixedTopGap="64">
+<mat-sidenav-container (backdropClick)="closeSidenav()" fullscreen>
+	<mat-sidenav #sidenav (keydown.escape)="closeSidenav()" [fixedInViewport]="true" fixedTopGap="64">
 		<sidenav></sidenav>
 	</mat-sidenav>
 	<mat-sidenav-content>

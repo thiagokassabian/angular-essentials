@@ -1,25 +1,41 @@
 import { Injectable } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
 	providedIn: 'root',
 })
 export class SidenavService {
 	private sidenav: MatSidenav;
+	isSidebarVisible: boolean;
 
-	public setSidenav(sidenav: MatSidenav) {
+	sidebarVisibilityChange: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+
+	constructor() {
+		this.sidebarVisibilityChange.subscribe(value => {
+			this.isSidebarVisible = value;
+		});
+	}
+
+	toggleSidebarVisibility = (value?: boolean) => {
+		this.sidebarVisibilityChange.next(value || !this.isSidebarVisible);
+	};
+
+	setSidenav = (sidenav: MatSidenav) => {
 		this.sidenav = sidenav;
-	}
+	};
 
-	public open() {
+	open = () => {
+		if (!this.isSidebarVisible) this.toggleSidebarVisibility();
 		return this.sidenav.open();
-	}
+	};
 
-	public close() {
+	close = () => {
+		if (this.isSidebarVisible) this.toggleSidebarVisibility();
 		return this.sidenav.close();
-	}
+	};
 
-	public toggle(): void {
+	toggle = () => {
 		this.sidenav.toggle();
-	}
+	};
 }
