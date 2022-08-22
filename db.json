@@ -65,6 +65,12 @@
       "name": "Liquidificador Philco",
       "price": 350.9,
       "categoryId": 5
+    },
+    {
+      "id": 15,
+      "name": "Novo produto",
+      "price": 1200,
+      "categoryId": 4
     }
   ],
   "categories": [
